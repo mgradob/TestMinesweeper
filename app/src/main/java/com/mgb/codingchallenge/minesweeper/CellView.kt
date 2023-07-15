@@ -1,0 +1,85 @@
+package com.mgb.codingchallenge.minesweeper
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun ClosedCell() {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .border(1.dp, Color.Black)
+            .background(Color.Gray)
+    ) {}
+}
+
+@Composable
+fun OpenCell(neighborBombs: Int = 0) {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .border(1.dp, Color.Black)
+            .background(Color.DarkGray),
+        contentAlignment = Alignment.Center,
+    ) {
+        if (neighborBombs > 0) {
+            Text(text = "$neighborBombs", color = Color.Blue)
+        }
+    }
+}
+
+@Composable
+fun FlagCell() {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .border(1.dp, Color.Black)
+            .background(Color.Gray),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(imageVector = Icons.Filled.Warning, contentDescription = null, tint = Color.Yellow)
+    }
+}
+
+@Composable
+fun BombCell() {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .border(1.dp, Color.Black)
+            .background(Color.DarkGray),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(imageVector = Icons.Filled.Close, contentDescription = null, tint = Color.Red)
+    }
+}
+
+@Composable
+@Preview
+private fun PreviewCell() {
+    Column {
+        ClosedCell()
+
+        OpenCell()
+
+        OpenCell(1)
+
+        FlagCell()
+
+        BombCell()
+    }
+}
